@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>text encryption</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav id="navbar" class="hidden">
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">text encrypter</a>
+            <ul class="navbar">
+                <li><a href="aes.html".  id="aesLink">AES</a></li>
+                <li><a href="des.html" id="desLink">DES</a></li>
+                <li><a href="rsa.html" id="rsaLink">RSA</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div>
+            <h1>text encrypter</h1>
+        </div>
+        <div>
+            <h2>Choose your encryption method</h2>
+        </div>
+    </div>
+    
+    <div class="btn-group">
+        <button id="aesBtn">AES</button>
+        <button id="desBtn">DES</button>
+        <button id="rsaBtn">RSA</button>
+    </div>
+
+    <div id="dynamic-content" class="dynamic-content hidden"></div>
+    
+    <script src="script_index.js"></script>
+</body>
+</html> 

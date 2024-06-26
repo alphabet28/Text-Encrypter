@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AES Encryption</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">text encrypter</a>
+            <ul class="navbar">
+                <li><a href="aes.html" class="active">AES</a></li>
+                <li><a href="des.html">DES</a></li>
+                <li><a href="rsa.html">RSA</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div>
+            <h1>AES Encryption & Decryption</h1>
+        </div>
+        <div class="toggle-container">
+            <span id="modeTextLeft">Encrypt</span>
+            <label class="switch">
+                <input type="checkbox" id="modeToggle">
+                <span class="slider round"></span>
+            </label>
+            <span id="modeTextRight">Decrypt</span>
+        </div>
+        <div>
+            <label for="plainText" id="textLabel">Enter Plain Text to Encrypt</label>
+            <input type="text" id="plainText" name="plainText" placeholder="Enter Plain Text">
+        </div>
+        <div>
+            <label for="cipherMode">Select Cipher Mode of Encryption</label>
+            <select id="cipherMode" name="cipherMode">
+                <option value="ECB">ECB</option>
+                <option value="CBC">CBC</option>
+                <option value="CTR">CTR</option>
+            </select>
+        </div>
+        <div id="ivInput" class="hidden">
+            <label for="initializationVector">Enter Initialization Vector (IV)</label>
+            <input type="text" id="initializationVector" name="initializationVector">
+        </div>
+        <div>
+            <label for="padding">Select Padding</label>
+            <select id="padding" name="padding">
+                <option value="NoPadding">NoPadding</option>
+                <option value="PKCS5Padding">PKCS5Padding</option>
+            </select>
+        </div>
+        <div>
+            <label for="keySize">Key Size in Bits</label>
+            <select id="keySize" name="keySize">
+                <option value="128">128</option>
+                <option value="192">192</option>
+                <option value="256">256</option>
+            </select>
+        </div>
+        <div>
+            <label for="secretKey">Enter Secret Key</label>
+            <input type="text" id="secretKey" name="secretKey" placeholder="Secret Key">
+        </div>
+        <div>
+            <button type="button" class="encrypt-btn">Encrypt</button>
+        </div>
+        <div>
+            <label for="encryptedText" id="outputLabel">Encrypted Output Text</label>
+            <textarea id="encryptedText" name="encryptedText" readonly></textarea>
+        </div>
+    </div>
+    <script src="script_aes.js"></script>
+</body>
+</html>

@@ -1,0 +1,499 @@
+/* styles.css */
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(255, 255, 255, 0.888); 
+  height: 100vh; 
+}
+
+.container {
+  margin-top: 10px; 
+  text-align: center; 
+  font-family:'Courier New', Courier, monospace;
+  
+}
+
+.container h1 {
+  cursor: pointer; 
+  font-size: 40px ;
+}
+
+.heading-homepage{
+  width: 100%;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px; 
+  margin-top: 20px;
+}
+
+button {
+  padding: 50px 150px;  
+  border: none;
+  border-radius: 200px; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+  background-color: #4CAF50; 
+  color: white; 
+  font-family:'Courier New', Courier, monospace;
+  font-size: 20px; 
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #425056; 
+}
+
+.container h2{
+  justify-content: center;
+  margin-top: 200px;
+  font-family:'Courier New', Courier, monospace;
+}
+
+nav {
+  width: 100%;
+  background-color: #333;
+  padding: 10px 0px;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1500px;
+  margin: auto;
+  padding: auto;
+}
+
+.navbar-brand {
+  color: white;
+  text-decoration: none;
+  font-size: 24px;
+  font-family: 'Courier New', Courier, monospace;
+  margin: 20px;
+}
+
+.navbar {
+  display: flex;
+  list-style-type: none;
+  padding: 0px;
+  margin: 0px;
+  margin-left: auto; /* Push the navbar items to the right */
+}
+
+.navbar li {
+  margin: 0px 15px;
+}
+
+.navbar a {
+  display: block;
+  padding: 14px 20px;
+  margin: 0px;
+  text-decoration: none;
+  color: white;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 18px;
+}
+
+.navbar a:hover,
+.navbar a.active {
+  border-bottom: 3px solid #4CAF50; /* Colored underline for active link */
+}
+
+.hidden {
+  display: none;
+}
+
+.container label {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
+  display: block;
+  margin-top: 20px;
+}
+
+.container input[type="text"],
+.container select {
+  width: 80%;
+  padding: 10px;
+  margin-top: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+}
+
+.encrypt-btn {
+  padding: 10px 20px;
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
+
+.encrypt-btn:hover {
+  background-color: #e68900;
+}
+
+#encryptedTextt {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  margin-top: 20px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none; 
+  margin-bottom: 20px;
+} 
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.switch {
+  position: relative;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #4CAF50;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.container-des {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.text-container {
+  display: flex;
+  flex: 1;
+  margin: 10px;
+}
+
+#text1, #text2 {
+  flex: 1;
+  height:200px;
+  box-sizing: border-box;
+  resize: vertical;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 18px;
+  line-height: 1.5;
+  margin-right: 5px;
+}
+
+#text3 {
+  width: 98.5%;
+  box-sizing: border-box;
+  resize: vertical;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 18px;
+  line-height: 1.5;
+  margin: 10px;
+}
+
+.container-buttons {
+  display: flex; 
+  justify-content: space-between;
+  width: 98.5%;
+  margin: 20px 20px 20px 20px
+}
+
+#left-button {
+  padding: 40px 50px;
+  margin-bottom: 20px;
+}
+
+#right-button {
+  padding: 40px 50px;
+  margin-bottom: 20px;
+}
+
+#clear-button{
+  padding: 40px 50px;
+  margin-bottom: 20px;
+}
+
+.container-des h1{
+  margin-left: 475px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 40px
+}
+
+
+/*RSA Encryption and Decryption*/
+
+.container-rsa{
+  margin-top: 20px; 
+  text-align: center; 
+  font-family:'Courier New', Courier, monospace;
+}
+
+.container-rsa h1 {
+  cursor: pointer; 
+  font-size: 40px ;
+  margin-top: 10px;
+}
+
+.container-rsa label {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 20px;
+  display: block;
+  margin-top: 40px;
+}
+
+.key-size-container {
+  padding-bottom:50px;
+}
+
+.container-rsa input[type="text"],
+.container-rsa select {
+  width: 80%;
+  padding: 10px;
+  margin-top: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+}
+
+.text-container-rsa1{
+  display: flex; 
+  width: 1100px;
+  margin-bottom: 50px;
+  margin-left: 50px;
+}
+
+#text1-rsa1{
+  flex: 1;
+  height:200px;
+  box-sizing: border-box;
+  resize: vertical;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 18px;
+  line-height: 1.5;
+  margin-right: 20px;
+  padding: 10PX;
+  width:500px;
+}
+
+#text2-rsa1 {
+  flex: 1;
+  height:200px;
+  padding: 10px;
+  box-sizing: border-box;
+  resize: vertical;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 18px;
+  line-height: 1.5;
+  margin-right: 5px;
+  width:500px;
+}
+
+.key-conatiner-rsa{
+  border: 10px #317a3e;
+  outline: 3px solid rgb(45, 45, 184); 
+}
+
+.keyintextareacontainer1{
+  text-align: left;
+  display: flex;
+  margin-top: 10px;
+  margin-left: 75px;
+  justify-content:space-between;
+  align-items: center;
+  width: 1050px;
+}
+
+#public_key{
+  font-size: 18px;
+  margin-right: 100px;
+  text-align: left;
+}
+
+#private_key{
+  padding: 0px;
+  font-size: 18px;
+  text-align: right;
+  margin-right: 359px;
+} 
+
+.keyintextareacontainer2{
+  text-align: left;
+  display: flex;
+  margin-top: 10px;
+  padding-left: 100px;
+  justify-content:space-between;
+  align-items: center;
+  width: 1100px;
+}
+
+#inputtext{
+  font-size: 18px;
+  margin-right: 100px;
+  text-align: left;
+}
+
+#output{
+  padding-bottom: 0px;
+  font-size: 18px;
+  text-align: right;
+  margin-right: 300px;
+} 
+
+#text1-rsa2{
+  flex: 1;
+  height:200px;
+  box-sizing: border-box;
+  resize: vertical;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 18px;
+  line-height: 1.5;
+  margin-right: 20px;
+  padding: 10px;
+  width:500px;
+}
+
+#text2-rsa2 {
+  flex: 1;
+  height:200px;
+  padding-left: 10px;
+  box-sizing: border-box;
+  resize: vertical;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 18px;
+  line-height: 1.5;
+  margin-right: 5px;
+  width:500px;
+}
+
+
+.text-container-rsa1{
+  display: flex; 
+  width: 1100px;
+  margin-bottom: 50px;
+  margin-left: 50px;
+}
+.key-container-rsa1{
+  border: 2px solid #000; /* 2px solid black border */
+  padding-bottom: 10px;
+  width:auto; /* Adjust the width to fit the content */
+  margin: 20px auto;
+}
+
+.key_generation_button{
+  padding: 20px 50px;
+  border: none;
+  border-radius: 200px; 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); 
+  background-color: #4CAF50; 
+  color: white; 
+  font-family:'Courier New', Courier, monospace;
+  font-size: 16px; 
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.key-container-rsa2{
+  border: 2px solid #000000;
+  padding-bottom: 10px;
+  width:auto; 
+  margin: 20px auto;
+}
+
+.navbar-container-rsa {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1200px;
+  margin: auto;
+}
+
+.key-size-container2{
+  padding-bottom:50px;
+}
+
+.encrypt-btn-rsa {
+  padding: 10px;
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+#encryptedTextt-rsa {
+  width: 80%;
+  height: 200px;
+  padding: 10px;
+  margin-top: 20px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none; 
+  margin-bottom: 20px;
+} 

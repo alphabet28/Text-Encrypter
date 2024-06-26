@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSA Encryption</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">text encrypter</a>
+            <ul class="navbar">
+                <li><a href="aes.html">AES</a></li>
+                <li><a href="des.html">DES</a></li>
+                <li><a href="rsa.html" class="active">RSA</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-rsa">
+        <div>
+            <h1>RSA Encryption & Decryption</h1>
+        </div>
+        <div class="toggle-container">
+            <span id="modeTextLeft">Encrypt</span>
+            <label class="switch">
+                <input type="checkbox" id="modeToggle-rsa">
+                <span class="slider round"></span>
+            </label>
+            <span id="modeTextRight">Decrypt</span>
+        </div>
+        <div class="key-size-container">
+            <label for="keySize">Key Size in Bits</label>
+            <select id="keySize" name="keySize">
+                <option value="512">512</option>
+                <option value="1024">1024</option>
+                <option value="2048">2048</option>
+                <option value="4096">4096</option>
+            </select>
+        </div>
+        <div class="key-container-rsa1">
+            <nav>
+                <div class="navbar-container-rsa">
+                    <a href="index.html" class="navbar-brand">RSA Key Generation</a>
+                </div>
+            </nav>
+            <div class="keyintextareacontainer1">
+                <h3 id="public_key">Public Key</h3>
+                <h3 id="private_key">Private Key</h3>
+            </div>
+            <div class="text-container-rsa1">
+                <textarea id="text1-rsa1" rows="5" readonly></textarea>
+                <textarea id="text2-rsa1" rows="5" readonly></textarea>
+            </div>
+            <div>
+                <button class="key_generation_button">Generate Keys</button>
+            </div>
+        </div>
+        <div class="key-container-rsa2">
+            <nav>
+                <div class="navbar-container-rsa">
+                    <a href="rsa.html" class="navbar-brand" id="nav-bar-rsa">RSA Encryption</a>
+                </div>
+            </nav>
+            <div class="public-private-key">
+                <label for="keyType">Key Type</label>
+                <select id="keySize" name="keySize">
+                    <option value="Public">Public</option>
+                    <option value="1024">Private</option>
+                </select>
+            </div>
+            <div class="keyintextareacontainer2">
+                <h3 id="inputtext">Enter Plain Text </h3>
+                <h3 id="output">Enter Public/Private key</h3>
+            </div>
+            <div class="text-container-rsa2">
+                <textarea id="text1-rsa2" rows="5" placeholder="Enter text"></textarea>
+                <textarea id="text2-rsa2" rows="5" placeholder="Enter text"></textarea>
+            </div>  
+            
+            <div>
+                <button type="button" class="encrypt-btn-rsa" id="encrypt-btn-rsa">Encrypt</button>
+            </div>
+            <div>
+                <label for="encryptedText" id="outputLabel">Encrypted Output Text</label>
+                <textarea id="encryptedTextt-rsa" name="encryptedText" readonly></textarea>
+            </div>
+        </div>
+        <footer></footer>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/node-forge/dist/forge.min.js"></script>
+    <script src="script_rsa.js"></script>
+</body>
+</html>

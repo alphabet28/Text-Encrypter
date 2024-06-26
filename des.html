@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DES Encryption</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+</head>
+<body>
+    <nav>
+        <div class="navbar-container">
+            <a href="index.html" class="navbar-brand">text encrypter</a>
+            <ul class="navbar">
+                <li><a href="aes.html">AES</a></li>
+                <li><a href="des.html" class="active">DES</a></li>
+                <li><a href="rsa.html">RSA</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-des">
+        <div>
+            <h1 class="DES-heading">DES Encryption & Decryption</h1>
+        </div>
+        <div class="text-container">
+            <textarea id="text1" rows="5" placeholder="Enter text"></textarea>
+            <textarea id="text2" rows="5" placeholder="Encrypted/Decrypted text"></textarea>
+        </div>
+        <div class="divider"><hr></div>
+        <div class="bottom-panel">
+            <textarea id="text3" placeholder="Enter secret key"></textarea>
+        </div>
+    </div>
+    <div class="container-buttons">
+        <button type="button" id="left-button">Encrypt</button>
+        <button type="button" id="clear-button">Clear</button>
+        <button type="button" id="right-button">Decrypt</button>
+    </div>
+    <script src="script_des.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+</body>
+</html>
