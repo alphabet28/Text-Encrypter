@@ -1,128 +1,131 @@
-// script_aes.js
 document.addEventListener('DOMContentLoaded', function () {
     const modeToggle = document.getElementById('modeToggle');
+    const encryptBtn = document.getElementById('encryptBtn');
     const plainText = document.getElementById('plainText');
     const cipherMode = document.getElementById('cipherMode');
-    const initializationVector = document.getElementById('initializationVector');
     const padding = document.getElementById('padding');
     const keySize = document.getElementById('keySize');
     const secretKey = document.getElementById('secretKey');
     const encryptedText = document.getElementById('encryptedText');
     const ivInput = document.getElementById('ivInput');
-    const encryptBtn = document.querySelector('.encrypt-btn');
+    const initializationVector = document.getElementById('initializationVector');
     const textLabel = document.getElementById('textLabel');
     const outputLabel = document.getElementById('outputLabel');
 
-    cipherMode.addEventListener('change', function () {
-        if (cipherMode.value === 'CBC' || cipherMode.value === 'CTR') {
-            ivInput.classList.remove('hidden');
-        } else {
-            ivInput.classList.add('hidden');
-        }
-    });
-
     modeToggle.addEventListener('change', function () {
         if (modeToggle.checked) {
-            textLabel.textContent = 'Enter Cipher Text to Decrypt';
+            // Decrypt mode
+            textLabel.textContent = 'Enter Encrypted Text to Decrypt';
             encryptBtn.textContent = 'Decrypt';
             outputLabel.textContent = 'Decrypted Output Text';
+            // Clear encryption-related fields
+            plainText.value = '';
+            ivInput.classList.add('hidden');
+            initializationVector.value = '';
+            padding.parentElement.classList.remove('hidden');
+            encryptedText.value = '';
         } else {
+            // Encrypt mode
             textLabel.textContent = 'Enter Plain Text to Encrypt';
             encryptBtn.textContent = 'Encrypt';
             outputLabel.textContent = 'Encrypted Output Text';
+            // Clear decryption-related fields
+            encryptedText.value = '';
         }
     });
 
-    function pad(text, blockSize) {
-        const padLength = blockSize - (text.length % blockSize);
-        const padding = String.fromCharCode(padLength).repeat(padLength);
-        return text + padding;
-    }
+    cipherMode.addEventListener('change', function () {
+        switch (cipherMode.value) {
+            case 'CBC':
+                ivInput.classList.remove('hidden');
+                padding.parentElement.classList.remove('hidden');
+                break;
+            case 'CTR':
+                ivInput.classList.remove('hidden');
+                padding.parentElement.classList.add('hidden');
+                break;
+            case 'ECB':
+            default:
+                ivInput.classList.add('hidden');
+                padding.parentElement.classList.remove('hidden');
+                break;
+        }
+    });
 
-    function unpad(text) {
-        const padLength = text.charCodeAt(text.length - 1);
-        return text.slice(0, -padLength);
-    }
+    secretKey.addEventListener('input', function () {
+        const maxLength = keySize.value / 8;
+        if (secretKey.value.length > maxLength) {
+            secretKey.value = secretKey.value.slice(0, maxLength);
+        }
+    });
 
-    encryptBtn.addEventListener('click', async function () {
-        const text = plainText.value;
-        const mode = modeToggle.checked ? 'decrypt' : 'encrypt';
-        const cipher = cipherMode.value;
-        const keyLen = parseInt(keySize.value);
-        const key = secretKey.value;
-        const iv = initializationVector.value;
-        const paddingMode = padding.value;
+    encryptBtn.addEventListener('click', function () {
+        const inputText = plainText.value;
+        const key = CryptoJS.enc.Utf8.parse(secretKey.value);
+        const iv = initializationVector.value ? CryptoJS.enc.Utf8.parse(initializationVector.value) : CryptoJS.lib.WordArray.random(16);
+        const keySizeBits = parseInt(keySize.value);
+        const mode = getCipherMode(cipherMode.value);
+        const paddingType = getPaddingType(padding.value);
+
+        if (!inputText || !secretKey.value) {
+            alert('Please enter text and secret key.');
+            return;
+        }
+
+        if (cipherMode.value === 'CBC' && !initializationVector.value) {
+            alert('Please enter an Initialization Vector (IV) for CBC mode.');
+            return;
+        }
+
         let result;
-
-        if (key.length !== keyLen / 8) {
-            alert(`Key length must be ${keyLen / 8} characters.`);
-            return;
+        if (modeToggle.checked) {
+            // Decryption
+            result = decrypt(inputText, key, iv, mode, paddingType);
+        } else {
+            // Encryption
+            result = encrypt(inputText, key, iv, mode, paddingType);
         }
 
-        if ((cipher === 'CBC' || cipher === 'CTR') && !iv) {
-            alert('Initialization Vector or Counter is required for CBC and CTR modes.');
-            return;
-        }
-
-        try {
-            const cryptoKey = await crypto.subtle.importKey(
-                'raw',
-                new TextEncoder().encode(key),
-                { name: 'AES-' + cipher, length: keyLen },
-                false,
-                mode === 'encrypt' ? ['encrypt'] : ['decrypt']
-            );
-
-            let ivOrCounter;
-            if (cipher === 'CTR') {
-                ivOrCounter = new Uint8Array(16);
-                const ivBytes = new TextEncoder().encode(iv);
-                ivOrCounter.set(ivBytes.subarray(0, 16));
-            } else if (cipher === 'CBC') {
-                ivOrCounter = new TextEncoder().encode(iv);
-            }
-
-            if (mode === 'encrypt') {
-                let data = text;
-                if (paddingMode === 'PKCS5Padding' && cipher !== 'CTR') {
-                    data = pad(text, 16);
-                }
-
-                const encrypted = await crypto.subtle.encrypt(
-                    {
-                        name: 'AES-' + cipher,
-                        iv: cipher === 'CBC' ? ivOrCounter : undefined,
-                        counter: cipher === 'CTR' ? ivOrCounter : undefined,
-                        length: cipher === 'CTR' ? 64 : undefined,
-                    },
-                    cryptoKey,
-                    new TextEncoder().encode(data)
-                );
-
-                result = btoa(String.fromCharCode(...new Uint8Array(encrypted)));
-            } else {
-                const decrypted = await crypto.subtle.decrypt(
-                    {
-                        name: 'AES-' + cipher,
-                        iv: cipher === 'CBC' ? ivOrCounter : undefined,
-                        counter: cipher === 'CTR' ? ivOrCounter : undefined,
-                        length: cipher === 'CTR' ? 64 : undefined,
-                    },
-                    cryptoKey,
-                    Uint8Array.from(atob(text), c => c.charCodeAt(0))
-                );
-
-                let data = new TextDecoder().decode(decrypted);
-                if (paddingMode === 'PKCS5Padding' && cipher !== 'CTR') {
-                    data = unpad(data);
-                }
-
-                result = data;
-            }
-
-            encryptedText.value = result;
-        } catch (e) {
-            alert('Error: ' + e.message);
-        }
+        encryptedText.value = result;
     });
+
+    function getCipherMode(mode) {
+        switch (mode) {
+            case 'CBC':
+                return CryptoJS.mode.CBC;
+            case 'CTR':
+                return CryptoJS.mode.CTR;
+            case 'ECB':
+            default:
+                return CryptoJS.mode.ECB;
+        }
+    }
+
+    function getPaddingType(padding) {
+        switch (padding) {
+            case 'NoPadding':
+                return CryptoJS.pad.NoPadding;
+            case 'PKCS5Padding':
+            default:
+                return CryptoJS.pad.Pkcs7;
+        }
+    }
+
+    function encrypt(text, key, iv, mode, padding) {
+        const encrypted = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(text), key, {
+            mode: mode,
+            padding: padding,
+            iv: iv
+        });
+        return encrypted.toString();
+    }
+
+    function decrypt(cipherText, key, iv, mode, padding) {
+        const decrypted = CryptoJS.AES.decrypt(cipherText, key, {
+            mode: mode,
+            padding: padding,
+            iv: iv
+        });
+        return CryptoJS.enc.Utf8.stringify(decrypted);
+    }
 });

@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const modeToggle = document.getElementById('modeToggle-rsa');
     const modeTextLeft = document.getElementById('modeTextLeft');
     const modeTextRight = document.getElementById('modeTextRight');
+    const outputtext = document.getElementById('output');
 
     let publicKey, privateKey;
     let isEncryptionMode = true;
@@ -79,14 +80,15 @@ document.addEventListener('DOMContentLoaded', () => {
             encryptButton.textContent = 'Encrypt';
             plainTextArea.placeholder = 'Enter text to encrypt';
             keyInputArea.placeholder = 'Enter public key';
-            inputText.textContent = 'Enter private key';
+            outputtext.textContent = 'Enter Public Key';
 
         } else {
             modeTextLeft.textContent = 'Encrypt';
             modeTextRight.textContent = 'Decrypt';
             encryptButton.textContent = 'Decrypt';
             plainTextArea.placeholder = 'Enter text to decrypt';
-            keyInputArea.placeholder = 'Enter public key';
+            keyInputArea.placeholder = 'Enter private key';
+            outputtext.textContent = 'Enter Private Key';
         }
     };
 

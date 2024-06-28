@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AES Encryption</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script defer src="script_aes.js"></script>
 </head>
 <body>
     <nav>
@@ -43,9 +45,9 @@
         </div>
         <div id="ivInput" class="hidden">
             <label for="initializationVector">Enter Initialization Vector (IV)</label>
-            <input type="text" id="initializationVector" name="initializationVector">
+            <input type="text" id="initializationVector" name="initializationVector" maxlength="16">
         </div>
-        <div>
+        <div id="paddingContainer">
             <label for="padding">Select Padding</label>
             <select id="padding" name="padding">
                 <option value="NoPadding">NoPadding</option>
@@ -65,13 +67,12 @@
             <input type="text" id="secretKey" name="secretKey" placeholder="Secret Key">
         </div>
         <div>
-            <button type="button" class="encrypt-btn">Encrypt</button>
+            <button type="button" class="encrypt-btn" id="encryptBtn">Encrypt</button>
         </div>
         <div>
             <label for="encryptedText" id="outputLabel">Encrypted Output Text</label>
             <textarea id="encryptedText" name="encryptedText" readonly></textarea>
         </div>
     </div>
-    <script src="script_aes.js"></script>
 </body>
 </html>

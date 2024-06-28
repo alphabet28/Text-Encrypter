@@ -14,7 +14,17 @@ document.getElementById('rsaBtn').onclick = function() {
     location.href = 'rsa.html';
 };
 
+document.addEventListener('DOMContentLoaded', function () {
+    const textElement = document.getElementById('typewriter-text');
+    const text = textElement.textContent;
+    textElement.textContent = '';
 
+    for (let i = 0; i < text.length; i++) {
+        setTimeout(function () {
+            textElement.textContent += text[i];
+        }, 100 * i);
+    }
+});
 // function addDynamicTextBoxes() {
 //     const dynamicContent = document.getElementById('dynamic-content');
 //     dynamicContent.innerHTML = `
