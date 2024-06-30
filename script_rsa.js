@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const encryptButton = document.getElementById('encrypt-btn-rsa');
     const publicKeyTextArea = document.getElementById('text1-rsa1');
     const privateKeyTextArea = document.getElementById('text2-rsa1');
-    const plainTextArea = document.getElementById('text1-rsa2');
-    const keyInputArea = document.getElementById('text2-rsa2');
     const encryptedTextArea = document.getElementById('encryptedTextt-rsa');
     const cipherMode = document.getElementById('cipherMode-rsa');
     const inputText = document.getElementById('inputtext');
@@ -13,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const modeTextLeft = document.getElementById('modeTextLeft');
     const modeTextRight = document.getElementById('modeTextRight');
     const outputtext = document.getElementById('output');
+    const nav_bar = document.getElementById('nav-bar-rsa');
+    const outputLabel = document.getElementById('outputLabel');
 
     let publicKey, privateKey;
     let isEncryptionMode = true;
@@ -75,20 +75,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleMode = () => {
         isEncryptionMode = !isEncryptionMode;
         if (isEncryptionMode) {
-            modeTextLeft.textContent = 'Encrypt';
-            modeTextRight.textContent = 'Decrypt';
+           
             encryptButton.textContent = 'Encrypt';
             plainTextArea.placeholder = 'Enter text to encrypt';
-            keyInputArea.placeholder = 'Enter public key';
+           
             outputtext.textContent = 'Enter Public Key';
+            nav_bar.textContent = 'RSA Encryption';
+            inputText.textcontent = 'Enter Plain Text';
+            outputLabel.textContent = 'Encrypted Output Text';
 
         } else {
-            modeTextLeft.textContent = 'Encrypt';
-            modeTextRight.textContent = 'Decrypt';
+          
             encryptButton.textContent = 'Decrypt';
-            plainTextArea.placeholder = 'Enter text to decrypt';
-            keyInputArea.placeholder = 'Enter private key';
+            plainTextArea.placeholder = 'Enter encrypted text to decrypt';
+           
             outputtext.textContent = 'Enter Private Key';
+            nav_bar.textContent = 'RSA Decryption';
+            inputText.textcontent = 'Enter encrypted text';
+            outputLabel.textContent = 'Decrypted Output Text';
         }
     };
 
