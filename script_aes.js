@@ -32,9 +32,14 @@ document.addEventListener('DOMContentLoaded', function () {
             // Clear decryption-related fields
             encryptedText.value = '';
         }
+        // Clear secret key field in both modes
+        secretKey.value = '';
     });
 
     cipherMode.addEventListener('change', function () {
+        // Clear all text areas when cipher mode changes
+        clearTextAreas();
+
         switch (cipherMode.value) {
             case 'CBC':
                 ivInput.classList.remove('hidden');
@@ -88,6 +93,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
         encryptedText.value = result;
     });
+
+    function clearTextAreas() {
+        plainText.value = '';
+        secretKey.value = ''; // Clear secret key field
+        initializationVector.value = '';
+        encryptedText.value = '';
+    }
 
     function getCipherMode(mode) {
         switch (mode) {
