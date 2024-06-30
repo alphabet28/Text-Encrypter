@@ -20,9 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
             outputLabel.textContent = 'Decrypted Output Text';
             // Clear encryption-related fields
             plainText.value = '';
-            ivInput.classList.add('hidden');
             initializationVector.value = '';
-            padding.parentElement.classList.remove('hidden');
             encryptedText.value = '';
         } else {
             // Encrypt mode
@@ -34,27 +32,17 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         // Clear secret key field in both modes
         secretKey.value = '';
+
+        // Check the current cipher mode and set the visibility of ivInput and padding
+        updateCipherModeVisibility();
     });
 
     cipherMode.addEventListener('change', function () {
         // Clear all text areas when cipher mode changes
         clearTextAreas();
 
-        switch (cipherMode.value) {
-            case 'CBC':
-                ivInput.classList.remove('hidden');
-                padding.parentElement.classList.remove('hidden');
-                break;
-            case 'CTR':
-                ivInput.classList.remove('hidden');
-                padding.parentElement.classList.add('hidden');
-                break;
-            case 'ECB':
-            default:
-                ivInput.classList.add('hidden');
-                padding.parentElement.classList.remove('hidden');
-                break;
-        }
+        // Update the visibility of ivInput and padding based on the selected cipher mode
+        updateCipherModeVisibility();
     });
 
     secretKey.addEventListener('input', function () {
@@ -99,6 +87,24 @@ document.addEventListener('DOMContentLoaded', function () {
         secretKey.value = ''; // Clear secret key field
         initializationVector.value = '';
         encryptedText.value = '';
+    }
+
+    function updateCipherModeVisibility() {
+        switch (cipherMode.value) {
+            case 'CBC':
+                ivInput.classList.remove('hidden');
+                padding.parentElement.classList.remove('hidden');
+                break;
+            case 'CTR':
+                ivInput.classList.remove('hidden');
+                padding.parentElement.classList.add('hidden');
+                break;
+            case 'ECB':
+            default:
+                ivInput.classList.add('hidden');
+                padding.parentElement.classList.remove('hidden');
+                break;
+        }
     }
 
     function getCipherMode(mode) {
