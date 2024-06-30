@@ -86,6 +86,11 @@ document.addEventListener('DOMContentLoaded', () => {
             inputTextArea2.placeholder = 'Enter Private Key';
             outputLabel.textContent = 'Decrypted Output Text';
         }
+
+        // Clear the text areas when mode changes
+        inputTextArea1.value = '';
+        inputTextArea2.value = '';
+        encryptedTextArea.value = '';
     };
 
     // Event listener for encryption/decryption toggle
