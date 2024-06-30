@@ -5,15 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const publicKeyTextArea = document.getElementById('text1-rsa1');
     const privateKeyTextArea = document.getElementById('text2-rsa1');
     const encryptedTextArea = document.getElementById('encryptedTextt-rsa');
-    const cipherMode = document.getElementById('cipherMode-rsa');
-    const inputText = document.getElementById('inputtext');
+    const inputTextArea1 = document.getElementById('text1-rsa2');
+    const inputTextArea2 = document.getElementById('text2-rsa2');
     const modeToggle = document.getElementById('modeToggle-rsa');
-    const modeTextLeft = document.getElementById('modeTextLeft');
-    const modeTextRight = document.getElementById('modeTextRight');
-    const outputtext = document.getElementById('output');
-    const nav_bar = document.getElementById('nav-bar-rsa');
+    const output = document.getElementById('output');
+    const navBar = document.getElementById('nav-bar-rsa');
     const outputLabel = document.getElementById('outputLabel');
-
     let publicKey, privateKey;
     let isEncryptionMode = true;
 
@@ -75,23 +72,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const toggleMode = () => {
         isEncryptionMode = !isEncryptionMode;
         if (isEncryptionMode) {
-           
             encryptButton.textContent = 'Encrypt';
-            plainTextArea.placeholder = 'Enter text to encrypt';
-           
-            outputtext.textContent = 'Enter Public Key';
-            nav_bar.textContent = 'RSA Encryption';
-            inputText.textcontent = 'Enter Plain Text';
+            inputTextArea1.placeholder = 'Enter text to encrypt';
+            output.textContent = 'Enter Public Key';
+            navBar.textContent = 'RSA Encryption';
+            inputTextArea2.placeholder = 'Enter Public Key';
             outputLabel.textContent = 'Encrypted Output Text';
-
         } else {
-          
             encryptButton.textContent = 'Decrypt';
-            plainTextArea.placeholder = 'Enter encrypted text to decrypt';
-           
-            outputtext.textContent = 'Enter Private Key';
-            nav_bar.textContent = 'RSA Decryption';
-            inputText.textcontent = 'Enter encrypted text';
+            inputTextArea1.placeholder = 'Enter encrypted text to decrypt';
+            output.textContent = 'Enter Private Key';
+            navBar.textContent = 'RSA Decryption';
+            inputTextArea2.placeholder = 'Enter Private Key';
             outputLabel.textContent = 'Decrypted Output Text';
         }
     };
@@ -101,8 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event listener for encryption/decryption
     encryptButton.addEventListener('click', () => {
-        const text = plainTextArea.value;
-        const key = keyInputArea.value;
+        const text = inputTextArea1.value;
+        const key = inputTextArea2.value;
 
         if (text && key) {
             if (isEncryptionMode) {
